@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+* {margin:0; padding:0;}
+a {text-decoration:none;}
+li {list-style:none;}
+html, body {background-color:#fff; }
+button[type="*"] {appearance:none; background-color:#fff; }
+.btn {width:150px; min-height:50px; border:0px;}
+
+
+body { background-color:#ddd;}
