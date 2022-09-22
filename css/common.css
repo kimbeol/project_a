@@ -4,10 +4,22 @@
 a {text-decoration:none;}
 li {list-style:none;}
 html, body {background-color:#fff; text-align:center;}
-button[type="*"] {appearance:none; background-color:#fff; }
-.btn {width:auto;height:50px; border:0px; font-size:20px;}
+body {min-height:100vh; background-color:rgb(108, 107, 107);}
+button[type="button"] {appearance:none; cursor:pointer;}
 
-body { background-color:#ddd;}
+/* layout */
+.logo {margin-top:80px; margin-bottom:20px;}
+.btn {width:auto; height:50px; border:0px; font-size:20px; background-color:transparent;}
+.btn_round {border-radius:3px;}
+.bg_blue {background-color:rgb(70, 168, 238);}
+.bg_yellow {background-color:rgb(255, 234, 0);}
+.bg_pink {background-color:rgb(247, 89, 197);}
 
-section.buttons {display:flex; align-items:center; justify-content:center; gap:10px; max-width:1200px; background-color:#ddd;}
+section.buttons {display:flex; align-items:center; justify-content:space-between; max-width:500px; gap:10px; margin:0 auto;}
+section.buttons .btn {height:60px; min-width:60px; }
 .child_img {height:100%;}
+
+ul.items {max-width:500px; margin:10px auto 0px; padding:10px 0px;}
+ul.items li {display:flex; align-items:center; justify-content:flex-start; width:100%; min-height:50px; padding:5px; background-color:#fff;}
+ul.items li + li {margin-top:10px;}
+ul.items li img {height:50px;}
