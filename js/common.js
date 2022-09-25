@@ -1,8 +1,9 @@
 /**
  * 0. array list
+ * type : shirt, pants, skirt
+ * color : blue, yellow, pink
  */
  function arrEvent() {
-    // 품목 : shirt, pants, skirt
     let arrLoop = [
         // shirt
         {
@@ -73,14 +74,6 @@
     ];
 
     return arrLoop;
-
-    // for(val in arrLoop) {
-    //     console.log(arrLoop[val].type)
-    // }
-
-    // for(val of arrLoop) {
-    //     console.log(val)
-    // }
 }
 
 /**
@@ -99,19 +92,37 @@
  */
 read = (item) => {
     let elementsVal2 = listHtml(item);
-    console.log(elementsVal2); 
-    // if(val.type !== items){
-    //     elementsVal += `<li class="li" data-code=${val.color} >
-    //         <img src="${val.image}" alt="${val.type}">
-    //         <span class="name">${val.gender}, ${val.size}</span>
-    //     </li>`;
-    // }
 
     // html elements
     let itemsEle = document.querySelector('.items');
     itemsEle.innerHTML = elementsVal2;
 
     // return arrEvent();
+}
+
+/**
+ * search Event
+ */
+searchList = (item) => {
+    let dataName = item;
+    let listLi = [];
+    let lengthLi = arrEvent();
+    let schEle = '';
+
+    for(val of lengthLi) {
+        // console.log(val.image);
+        if((dataName == val.type) || (dataName == val.color)) {
+            schEle += `<li class="li" data-code="${val.type}" data-color="${val.color}">
+                    <img src="${val.image}" alt="${val.type}">
+                    <span class="name">${val.gender}, ${val.size}</span>
+                </li>`;
+        }
+    }
+
+    let itemsEle = document.querySelector('.items');
+    delete itemsEle.children;
+    itemsEle.innerHTML = schEle;
+    
 }
 
 /**
@@ -124,9 +135,8 @@ listHtml = (item) => {
     let elementsValArr = [];
 
     for(val of arrEventList) {
-        // console.log(val.image);
 
-        elementsVal += `<li class="li" data-code=${val.color} >
+        elementsVal += `<li class="li" data-code="${val.type}" data-color="${val.color}">
                 <img src="${val.image}" alt="${val.type}">
                 <span class="name">${val.gender}, ${val.size}</span>
             </li>`;
@@ -138,23 +148,23 @@ listHtml = (item) => {
 
 
 /**
- * click event
+ * click button event
  */
 let btn_t = document.querySelector('.btn_t').addEventListener('click', () =>{
-    read('shirt');
+    searchList('shirt');
 });
 let btn_p = document.querySelector('.btn_p').addEventListener('click', () =>{
-    read('pants');
+    searchList('pants');
 });
 let btn_s = document.querySelector('.btn_s').addEventListener('click', () =>{
-    read('skirt');
+    searchList('skirt');
 });
 let btn_blue = document.querySelector('.bg_blue').addEventListener('click', () =>{
-    read('blue');
+    searchList('blue');
 });
 let btn_yellow = document.querySelector('.bg_yellow').addEventListener('click', () =>{
-    read('yellow');
+    searchList('yellow');
 });
 let btn_pink = document.querySelector('.bg_pink').addEventListener('click', () =>{
-    read('pink');
+    searchList('pink');
 });
