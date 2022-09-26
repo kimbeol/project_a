@@ -1,4 +1,15 @@
 /**
+ * 1.load
+ */
+ window.onload = function() {
+    let eleVal;
+
+    // 목록
+    read();
+}
+
+
+/**
  * 0. array list
  * type : shirt, pants, skirt
  * color : blue, yellow, pink
@@ -77,17 +88,6 @@
 }
 
 /**
- * 1.load
- */
- window.onload = function() {
-    let eleVal;
-
-    // 목록
-    read();
-}
-
-
-/**
  * 2.read
  */
 read = (item) => {
@@ -109,19 +109,22 @@ searchList = (item) => {
     let lengthLi = arrEvent();
     let schEle = '';
 
-    for(val of lengthLi) {
-        // console.log(val.image);
-        if((dataName == val.type) || (dataName == val.color)) {
-            schEle += `<li class="li" data-code="${val.type}" data-color="${val.color}">
-                    <img src="${val.image}" alt="${val.type}">
-                    <span class="name">${val.gender}, ${val.size}</span>
-                </li>`;
+    if(dataName) {
+        for(val of lengthLi) {
+            // console.log(val.image);
+            if((dataName == val.type) || (dataName == val.color)) {
+                schEle += `<li class="li" data-code="${val.type}" data-color="${val.color}">
+                        <img src="${val.image}" alt="${val.type}">
+                        <span class="name">${val.gender}, ${val.size}</span>
+                    </li>`;
+            }
         }
+    
+        let itemsEle = document.querySelector('.items');
+        delete itemsEle.children;
+        itemsEle.innerHTML = schEle;
     }
-
-    let itemsEle = document.querySelector('.items');
-    delete itemsEle.children;
-    itemsEle.innerHTML = schEle;
+   
     
 }
 
@@ -146,25 +149,26 @@ listHtml = (item) => {
     return ele;
 }
 
+// 이벤트 위임
+const ActionFunctions = {
+    shirt : () => {searchList('shirt')},
+    pants : () => {searchList('pants')},
+    skirt : () => {searchList('skirt')},
+    blue :  () => {searchList('blue')},
+    yellow : () => {searchList('yellow')},
+    pink :  () => {searchList('pink')}
+}
 
 /**
  * click button event
  */
-let btn_t = document.querySelector('.btn_t').addEventListener('click', () =>{
-    searchList('shirt');
+document.querySelector('.buttons').addEventListener('click', e =>{
+  
+    const action = e.target.dataset.action
+   
+    if (action) {
+        ActionFunctions[action]();
+    }
+    
 });
-let btn_p = document.querySelector('.btn_p').addEventListener('click', () =>{
-    searchList('pants');
-});
-let btn_s = document.querySelector('.btn_s').addEventListener('click', () =>{
-    searchList('skirt');
-});
-let btn_blue = document.querySelector('.bg_blue').addEventListener('click', () =>{
-    searchList('blue');
-});
-let btn_yellow = document.querySelector('.bg_yellow').addEventListener('click', () =>{
-    searchList('yellow');
-});
-let btn_pink = document.querySelector('.bg_pink').addEventListener('click', () =>{
-    searchList('pink');
-});
+

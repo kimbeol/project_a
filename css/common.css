@@ -23,3 +23,7 @@ ul.items {max-width:500px; margin:10px auto 0px; padding:10px 0px;}
 ul.items li {display:flex; align-items:center; justify-content:flex-start; width:100%; min-height:50px; padding:5px; background-color:#fff;}
 ul.items li + li {margin-top:10px;}
 ul.items li img {height:50px;}
+
+.child_img{
+    pointer-events: none;
+}
