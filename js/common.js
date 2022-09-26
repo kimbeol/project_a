@@ -104,27 +104,24 @@ read = (item) => {
  * search Event
  */
 searchList = (item) => {
-    let dataName = item;
+    let dataName = item.dataset.action;
     let listLi = [];
     let lengthLi = arrEvent();
     let schEle = '';
 
-    if(dataName) {
-        for(val of lengthLi) {
-            // console.log(val.image);
-            if((dataName == val.type) || (dataName == val.color)) {
-                schEle += `<li class="li" data-code="${val.type}" data-color="${val.color}">
-                        <img src="${val.image}" alt="${val.type}">
-                        <span class="name">${val.gender}, ${val.size}</span>
-                    </li>`;
-            }
+    for(val of lengthLi) {
+        // console.log(val.image);
+        if((dataName == val.type) || (dataName == val.color)) {
+            schEle += `<li class="li" data-code="${val.type}" data-color="${val.color}">
+                    <img src="${val.image}" alt="${val.type}">
+                    <span class="name">${val.gender}, ${val.size}</span>
+                </li>`;
         }
-    
-        let itemsEle = document.querySelector('.items');
-        delete itemsEle.children;
-        itemsEle.innerHTML = schEle;
     }
-   
+
+    let itemsEle = document.querySelector('.items');
+    delete itemsEle.children;
+    itemsEle.innerHTML = schEle;
     
 }
 
@@ -150,25 +147,22 @@ listHtml = (item) => {
 }
 
 // 이벤트 위임
-const ActionFunctions = {
-    shirt : () => {searchList('shirt')},
-    pants : () => {searchList('pants')},
-    skirt : () => {searchList('skirt')},
-    blue :  () => {searchList('blue')},
-    yellow : () => {searchList('yellow')},
-    pink :  () => {searchList('pink')}
-}
+// const ActionFunctions = {
+//     shirt : () => {searchList('shirt')},
+//     pants : () => {searchList('pants')},
+//     skirt : () => {searchList('skirt')},
+//     blue :  () => {searchList('blue')},
+//     yellow : () => {searchList('yellow')},
+//     pink :  () => {searchList('pink')}
+// }
 
 /**
  * click button event
  */
 document.querySelector('.buttons').addEventListener('click', e =>{
   
-    const action = e.target.dataset.action
-   
-    if (action) {
-        ActionFunctions[action]();
-    }
-    
+    const action = e.target;
+    searchList(action);
+
 });
 
