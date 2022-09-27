@@ -1,13 +1,14 @@
 
 
 window.onlineShop_list = (function() {
+    
+    // global scope
+    let eleVal;
 
     /**
-     * 1.load
+     * 1.load : init
      */
-    window.onload = function() {
-        let eleVal;
-
+    function load() {
         // 목록
         read();
     }
@@ -93,7 +94,7 @@ window.onlineShop_list = (function() {
     /**
      * 2.read
      */
-    read = (item) => {
+     const read = (item) => {
         let elementsVal2 = listHtml(item);
 
         // html elements
@@ -106,7 +107,7 @@ window.onlineShop_list = (function() {
     /**
      * search Event
      */
-    searchList = (item) => {
+     const searchList = (item) => {
         let dataName = item.dataset.action;
         let listLi = [];
         let lengthLi = arrEvent();
@@ -131,7 +132,7 @@ window.onlineShop_list = (function() {
     /**
      * function
      */
-    listHtml = (item) => {
+    const listHtml = (item) => {
         let items = item;
         let arrEventList = arrEvent();
         let elementsVal = '';
@@ -168,6 +169,10 @@ window.onlineShop_list = (function() {
         searchList(action);
 
     }); 
+
+    return {
+        init : load 
+    }
 
 })();
 
